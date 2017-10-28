@@ -18,7 +18,7 @@ function editComment(id, text) {
     return {
         type: EDIT_COMMENT,
         id,
-        text: text
+        text
     }
 }
 
