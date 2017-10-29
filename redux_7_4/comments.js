@@ -13,37 +13,31 @@ function comments(state = [], action) {
                 votes: 0
             },...state];
         case REMOVE_COMMENT:
-            return [state.filter(c => c.id !== action.id)];
+            return state.filter(c => c.id !== action.id);
 
         case EDIT_COMMENT:
-            const comment = state.find(c => c.id === action.id);
-            const other_comments = state.filter(c => c.id !== action.id);
-            const updated_comment = {
+            const updatedComment = {
                 id: comment.id,
                 text: action.text,
                 votes: comment.votes
             };
-            return [updated_comment,...other_comments];
+            return state.map(comment => comment.id === action.id ? updatedComment : comment);
 
         case THUMB_UP_COMMENT:
-            const comment = state.filter(c => c.id === action.id);
-            const other_comments = state.filter(c => c.id !== action.id);
-            const updated_comment = {
+            const updatedComment = {
                 id: action.id,
                 text: comment.text,
                 votes: comment.votes + 1
             };
-            return [updated_comment,...other_comments]
+            return state.map(comment => comment.id === action.id ? updatedComment : comment);
 
         case THUMB_DOWN_COMMENT:
-            const comment = state.filter(c => c.id === action.id);
-            const other_comments = state.filter(c => c.id !== action.id);
-            const updated_comment = {
+            const updatedComment = {
                 id: action.id,
                 text: comment.text,
                 votes: comment.votes - 1
             };
-            return [updated_comment,...other_comments]
+            return state.map(comment => comment.id === action.id ? updatedComment : comment);
 
         default:
             return state;
