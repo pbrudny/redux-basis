@@ -9,3 +9,12 @@ export const addComment = (text) => {
         text: text
     }
 }
+
+export const THUMB_UP_COMMENT = 'THUMB_UP_COMMENT'
+
+export const thumbUpComment = (commentId) => {
+    return {
+        type: THUMB_UP_COMMENT,
+        id: commentId
+    }
+}
