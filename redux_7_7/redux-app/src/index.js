@@ -4,16 +4,16 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import { createStore, applyMiddleware } from 'redux'
+import { createStore } from 'redux'
 import { Provider } from 'react-redux';
-import { createLogger } from 'redux-logger';
 import { reducer } from './reducer'
 import { addComment} from "./actions";
 
-const logger = createLogger();
+import DevTools from './DevTools';
+
 const store = createStore(
     reducer,
-    applyMiddleware(logger)
+    DevTools.instrument()
 );
 
 ReactDOM.render(
